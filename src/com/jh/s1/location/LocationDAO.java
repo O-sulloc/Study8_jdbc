@@ -17,6 +17,33 @@ public class LocationDAO {
 		dbConnector = new DBConnector();
 	} // locationDAO 객체 만들 때 DBConnector 객체도 만들어라
 
+	// location_id로 조회하는 메서드
+	public LocationDTO getOne(LocationDTO loc) throws Exception {
+		LocationDTO locationDTO = null;
+		Connection con = dbConnector.getConnect();
+		String sql = "SELECT * from locations where location_id = ? ";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setInt(1, loc.getLocation_id());
+		ResultSet rs = st.executeQuery();
+
+		if (rs.next()) {
+			locationDTO = new LocationDTO();
+			locationDTO.setLocation_id(rs.getInt("location_id"));
+			locationDTO.setStreet_address(rs.getString("street_address"));
+			locationDTO.setPostal_code(rs.getString("postal_code"));
+			locationDTO.setCity(rs.getString("city"));
+			locationDTO.setState_province(rs.getString("state_province"));
+			locationDTO.setCountry_id(rs.getString("country_id"));
+
+		}
+		rs.close();
+		st.close();
+		con.close();
+
+		return locationDTO;
+	}
+
+	// 전체조회 메서드
 	public List<LocationDTO> getList() throws Exception { // void 나중에 수정
 		ArrayList<LocationDTO> ar = new ArrayList<>();
 		// 1. db에 로그인해야돼 (만들어놓음)
