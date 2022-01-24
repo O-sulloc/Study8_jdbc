@@ -3,6 +3,7 @@ package com.jh.s1.employee;
 public class EmployeeDTO {
 
 	private Integer employee_id, salary, phone_number, commission_pct, manger_id, department_id, hire_date;
+	private String first_name, last_name, email, job_id;
 
 	public Integer getEmployee_id() {
 		return employee_id;
@@ -91,7 +92,5 @@ public class EmployeeDTO {
 	public void setJob_id(String job_id) {
 		this.job_id = job_id;
 	}
-
-	private String first_name, last_name, email, job_id;
 
 }

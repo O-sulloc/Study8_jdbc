@@ -24,6 +24,8 @@ public class DepartmentDAO {
 		// 위에 private dbConnector만 해놓고 생성자를 안만들었잖아. 생성자로 객체 만들어야지
 	}
 
+	// 부서정보, 그 부서에 근무하는 사원들의 정보
+
 	// 부서번호로 조회하는 메서드
 	public DepartmentDTO getOne(DepartmentDTO dep) throws Exception {
 		DepartmentDTO departmentDTO = null;
@@ -49,13 +51,12 @@ public class DepartmentDAO {
 		// ▼st.set데이터타입(int 타입의 index, 값)
 		st.setInt(1, dep.getDepartment_id());
 		// 왜 setInt냐? 부서_id가 int타입이 들어갈거잖아. 즉 물음표(?)에 10번, 20번같은 int타입이 들어갈건잖아!
-		// 근데 그 부서 번호 어디서 받아올건데? 
+		// 근데 그 부서 번호 어디서 받아올건데?
 		// 첫번째 물음표에 department_id를 넣어주세요~
 		// index는 물음표의 순서를 말하는거임.
 		// 근데!!! 자바에서는 인덱스 번호가 0번부터 시작했지만 오라클에서는 1번부터 시작임!!!
 		// 만약에 select ? from departments where department_id = ? 라고 나와있으며ㅑㄴ
 		// select 뒤에 물음표가 1번이고 마지막 물음표는 2번인거
-		
 
 		ResultSet rs = st.executeQuery();
 
